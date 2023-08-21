@@ -1,8 +1,10 @@
 #' @import dplyr
 #' @importFrom tibble column_to_rownames
+#' @importFrom lme4 glmer
 
 library(tibble)
 library(dplyr)
+library(lme4)
 
 ## Auxiliary function
 check_para <- function(para_name,envir){

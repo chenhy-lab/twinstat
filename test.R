@@ -31,6 +31,7 @@ GEE_res <- GEE(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 glm_res <- logisticMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 
 
-
+# logistic regression
+nlm_res <- nlmMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=c('RDS'))
 
 

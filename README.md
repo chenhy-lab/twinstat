@@ -12,7 +12,7 @@ Install the twinstat package via the Github repository:
 
 ``` r
 # install.package("remotes")   #In case you have not installed it.
-remotes::install_github("huiyao2018/twinstat")
+remotes::install_github("chenhy-lab/twinstat")
 ```
 
 ------------------------------------------------------------------------

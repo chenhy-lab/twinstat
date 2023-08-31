@@ -1,10 +1,10 @@
 #' @import dplyr
+#' @import mets
 #' @importFrom tibble column_to_rownames
-#' @importFrom lme4 glmer
 
 library(tibble)
 library(dplyr)
-library(lme4)
+library(mets)
 
 ## Auxiliary function
 check_para <- function(para_name,envir){
@@ -50,7 +50,7 @@ load_example_data <- function() {
 #' @param zyg character, indicates the type of twin, in the example data 1 is monochorionic and 0 is dichorionic.
 #' @param Monochorionic_value character or numeric, the value indicating monochorionic twins. Default is 1.
 #' @param Dichorionic_value character or numeric, the value indicating dichorionic twins. Default is 0.
-#' 
+#' @param print.out a boolean, Whether or not to print results.
 #' 
 #' @return
 #' Return a list. Chisq_value and P_value are the results of the chi-square test and 

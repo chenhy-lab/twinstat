@@ -12,11 +12,9 @@ compareMD(result.twin.index, print.out = TRUE)
 \item{print.out}{a boolean, Whether or not to print results.}
 }
 \value{
-Return a dataframe. 
-OR_MZ, OR_DZ, OR_common OR_a and OR_c are zygosity-specific odds ratios, common odds ratio, genetic effect and common environmental effects.
-chisq_MH and p_value_MH are the Mantel-Haenszel test statistics for the common odds ratio.
-chisq_G and  p_value_G are the Woolf-Haldane test statistics for the difference in the zygosity-specific odds ratios.
-chisq_c and p_value_c are the test statistics for common environmental effects.
+Return two dataframe. 
+OR is different effects odds ratios.
+test is different test statistics for the common odds ratio.
 }
 \description{
 \code{compareMD} is a function for analyzing dichotomous outcomes in unselected 

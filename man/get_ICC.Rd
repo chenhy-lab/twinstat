@@ -38,8 +38,8 @@ of the phenotype separately within monochorionic and dichorionic pairs.
 data <- load_example_data();
 chisq_res <- twin.chisqTest(data = data,famid = 'FAMID',outcome = 'BPD',zyg = 'zygo')
 stat_mat <- chisq_res$stat_mat
-get_ICC(n_neither = stat_mat['Monochorionic','Neither'],
-        n_one     = stat_mat['Monochorionic','One'],
-        n_both    = stat_mat['Monochorionic','Both'])
+get_ICC(n_neither = stat_mat['MZ','Neither'],
+        n_one     = stat_mat['MZ','One'],
+        n_both    = stat_mat['MZ','Both'])
 
 }

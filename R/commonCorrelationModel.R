@@ -27,9 +27,9 @@
 #' data <- load_example_data();
 #' chisq_res <- twin.chisqTest(data = data,famid = 'FAMID',outcome = 'BPD',zyg = 'zygo')
 #' stat_mat <- chisq_res$stat_mat
-#' get_ICC(n_neither = stat_mat['Monochorionic','Neither'],
-#'         n_one     = stat_mat['Monochorionic','One'],
-#'         n_both    = stat_mat['Monochorionic','Both'])
+#' get_ICC(n_neither = stat_mat['MZ','Neither'],
+#'         n_one     = stat_mat['MZ','One'],
+#'         n_both    = stat_mat['MZ','Both'])
 #' 
 #' @export
 get_ICC <- function(n_neither, n_one, n_both, method='auto', print.out=TRUE){
@@ -49,7 +49,7 @@ get_ICC <- function(n_neither, n_one, n_both, method='auto', print.out=TRUE){
   p_value <- 2*stats::pnorm(abs(Z0),lower.tail = FALSE)
   Vh <- ((1-p)/N)*((1-p)*(1-2*p)+(p*(2-p))/(2*pi_est*(1-pi_est)))
   if(method=='auto'){
-    if(N >100 & pi_est>0.3 & pi_est<0.7 & p<0.6){
+    if(N>100 & pi_est>0.3 & pi_est<0.7 & p<0.6){
       method <- 'normal'
     }
     if(N<=100 | pi_est<0.3 | pi_est>0.7 | p>=0.6){

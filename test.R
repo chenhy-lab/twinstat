@@ -34,4 +34,7 @@ glm_res <- logisticMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 # logistic regression
 nlm_res <- nlmMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=c('RDS'))
 
+# nlm
+nlmMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var='RDS',use_model='gamma')
+
 

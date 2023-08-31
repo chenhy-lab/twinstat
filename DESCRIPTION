@@ -1,8 +1,8 @@
 Package: twinstat
 Type: Package
-Title: Analysis of Twins, version 0.1.
-Version: 0.1.0
-Date: 2023-08-03
+Title: Analysis of Twins, version 1.0.
+Version: 1.0.0
+Date: 2023-08-30
 Authors@R: person('Huiyao', 'Chen', email = 'huiyaochen@foxmail.com', role = c('aut', 'cre'))
 Maintainer@R: person('Huiyao', 'Chen', email = 'huiyaochen@foxmail.com')
 Description: "Twinstat" is a package for analysing dichotomous outcome variables (such as the presence of a disease or a trait) in a sample of twins. The analytical methods included are stratified ratio methods, generalised estimation formulas, logistic regression analyses, public correlation models and H-W methods.
@@ -12,7 +12,8 @@ LazyData: true
 Depends:
   R (>= 3.6.0),
   dplyr (>= 1.1.2),
-  tibble (>= 3.2.1)
+  tibble (>= 3.2.1),
+  mets (>= 1.3.2)
 Imports:
 Suggests:
 RoxygenNote: 7.2.3

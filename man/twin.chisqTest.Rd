@@ -13,6 +13,7 @@ twin.chisqTest(
   zyg,
   Monochorionic_value = 1,
   Dichorionic_value = 0,
+  print.out = TRUE,
   ...
 )
 }
@@ -32,6 +33,8 @@ twin.chisqTest(
 \item{Monochorionic_value}{character or numeric, the value indicating monochorionic twins. Default is 1.}
 
 \item{Dichorionic_value}{character or numeric, the value indicating dichorionic twins. Default is 0.}
+
+\item{print.out}{a boolean, Whether or not to print results.}
 }
 \value{
 Return a list. Chisq_value and P_value are the results of the chi-square test and 

@@ -80,7 +80,7 @@ logisticMD <- function(data, famid,
       ~Components, ~RegressionModel, ~H0, ~Estimate, ~P_value, 
       "Familial", "Y = beta0 + beta1*X1 + beta2*X2", "beta1 = 0", sprintf("beta1 = %s",fit1_Beta1), fit1_Beta1_p,
       "Additive genetic", "Y = beta0 + beta1*X1 + beta2*X2 + beta3*X1*X2", "beta3 = 0", sprintf("beta3 = %s",Beta3), fit2_Beta1_p,
-      "Common environmental", "Y = beta0 + beta1*X1 + beta2*X2 + beta3*X1*X2", "beta1 = 0", sprintf("beta1 = %s",Beta1), Beta3_p
+      "Common environmental", "Y = beta0 + beta1*X1 + beta2*X2 + beta3*X1*X2", "beta1 = 0", sprintf("beta1 = %s",fit2_Beta1), Beta3_p
     )
   }
   if(print.out==TRUE){

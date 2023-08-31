@@ -51,6 +51,15 @@ compareICC(stat_mat)
 # StratificationOR
 twin.index_res <- twin.index(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 compareMD(twin.index_res)
+
+# Generalized estimating equations (GEE)
+GEE_res <- GEE(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
+
+## logistic regression
+glm_res <- logisticMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
+
+## mets package
+nlmMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var='RDS',use_model='bp')
 ```
 
 
@@ -58,5 +67,7 @@ compareMD(twin.index_res)
 
 - [TwinAnalysis](https://github.com/IvanVoronin/TwinAnalysis/): A package for 
   structural equation modeling and twin analysis using OpenMx package for R.
+- [mets](https://github.com/kkholst/mets): Implementation of 
+	various statistical models for multivariate event history data.
 - [TwinAnalysisR](https://github.com/SherryDong/TwinAnalysisR): 
   A function for ACE model for twin analysis.

@@ -1,0 +1,170 @@
+```{r init, echo=FALSE}
+
+suppressPackageStartupMessages(library(knitr))
+opts_chunk$set(warning=FALSE, tidy = FALSE, echo=FALSE, message=FALSE, results='asis', fig.width=6, fig.height=6, dev="png")
+options(knitr.kable.NA = '')
+
+```
+
+# Twinstat report
+
+------------------------------------------------------------------------
+
+### Method I : Compare intraclass correlation between two groups
+
+Citation: Donner A, Klar N, Eliasziw M. Statistical methodology for estimating twin similarity with respect to a dichotomous trait. Genet Epidemiol. 1995;12(3):267-77. doi: 10.1002/gepi.1370120304. PMID: 7557348.
+
+```{r chunk1 }
+
+kable(tablist$ICC_res, row.names=T)
+
+```
+
+------------------------------------------------------------------------
+
+### Method II : Stratified estimators of the odds ratio
+
+Citation: Ramakrishnan V, Goldberg J, Henderson WG, Eisen SA, True W, Lyons MJ, Tsuang MT. Elementary methods for the analysis of dichotomous outcomes in unselected samples of twins. Genet Epidemiol. 1992;9(4):273-87. doi: 10.1002/gepi.1370090406. PMID: 1398046
+
+```{r chunk2_0}
+
+cat(sprintf('The random seed is %s.',tablist$use_seed))
+
+```
+
+
+#### MZ
+
+```{r chunk2_1}
+
+kable(tablist$twin.index_res$stat_MZ_mat, row.names=T)
+
+```
+
+#### DZ
+
+```{r chunk2_2}
+
+kable(tablist$twin.index_res$stat_DZ_mat, row.names=T)
+
+```
+
+Odds ratio:
+
+```{r chunk2_3}
+
+kable(tablist$strataOR_res$OR, row.names=F)
+
+```
+
+Statistic test:
+
+```{r chunk2_4}
+
+kable(tablist$strataOR_res$test, row.names=F)
+
+```
+
+*Mantel-Haenszel test  
+p-value < 0.05 indicates that the familial aggregation of disease, there is a significantly higher risk of disease in the index twin if the co-twin has the disease.  
+*Woolf-Haldane test  
+p-value < 0.05 and OR(MZ) > OR(DZ) indicates that a specific underlying genetic influence on disease development.  
+p-value > 0.05 indicates that the absence of a genetic influence on disease development.  
+*Viswanathan-Ramakrishnan test  
+p-value < 0.05 and OR(MZ) > OR(DZ) indicates that disease association between index twins and co-twins is due to additive genes and some other type of genetic effects.  
+p-value < 0.05 and OR(MZ) < OR(DZ) indicates that disease association between index twins and co-twins is due to both the common environment and additive genes.  
+p-value > 0.05 indicates that the zygosity specific odds ratios are due solely to additive genetic effects and not to common environment.
+
+------------------------------------------------------------------------
+
+### Method III : Generalized estimating equations
+
+Citation: Lipsitz, Stuart R., et al. “Generalized Estimating Equations for Correlated Binary Data: Using the Odds Ratio as a Measure of Association.” Biometrika, vol. 78, no. 1, 1991, pp. 153–60. JSTOR, https://doi.org/10.2307/2336905.
+
+```{r chunk3_1}
+
+kable(tablist$GEE_res$OR, row.names=F)
+
+```
+
+
+```{r chunk3_2}
+
+cat('\n   *Woolf-Haldane test     \n\n')
+    cat(sprintf('OR(MZ) = %s, OR(DZ) = %s\n\n',round(tablist$GEE_res$OR[1,'OddsRatio'],3),round(tablist$GEE_res$OR[2,'OddsRatio'],3)))
+    cat(sprintf('Test of H\u2080: OR(MZ) = OR(DZ)\n\n  X-squared = %s, df = 1, p-value = %s\n\n',round(tablist$GEE_res$test$Chisq,3),format(tablist$GEE_res$test$P_value, scientific = TRUE, digits = 3)))
+
+```
+
+p-value < 0.05 and OR(MZ) > OR(DZ) indicates that a specific underlying genetic influence on disease development.
+p-value > 0.05 indicates that the absence of a genetic influence on disease development.
+
+------------------------------------------------------------------------
+
+### Method IV : logistic regression
+
+Citation: Ramakrishnan V, Goldberg J, Henderson WG, Eisen SA, True W, Lyons MJ, Tsuang MT. Elementary methods for the analysis of dichotomous outcomes in unselected samples of twins. Genet Epidemiol. 1992;9(4):273-87. doi: 10.1002/gepi.1370090406. PMID: 1398046
+
+```{r chunk4_1}
+
+kable(tablist$glm_res, row.names=F)
+
+```
+
+------------------------------------------------------------------------
+
+### Method V : Multivariate Event Times (mets)
+
+Citation: Thomas H. Scheike and Klaus K. Holst and Jacob B. Hjelmborg (2013). Estimating heritability for cause specific mortality based on twin studies. Lifetime Data Analysis. http://dx.doi.org/10.1007/s10985-013-9244-x
+Klaus K. Holst and Thomas H. Scheike Jacob B. Hjelmborg (2015). The Liability Threshold Model for Censored Twin Data. Computational Statistics and Data Analysis. http://dx.doi.org/10.1016/j.csda.2015.01.014
+
+#### ACE model:
+
+The estimated covariate effects and heritability for outcome.
+```{r chunk5_1_1}
+
+kable(tablist$mets_res$ace_cov, row.names=T)
+
+```
+
+Statistical analyses of for outcome heritability.
+```{r chunk5_1_2}
+
+kable(tablist$mets_res$ace, row.names=T)
+
+```
+
+```{r chunk5_2}
+
+cat(sprintf("*Model ajdust with %s. ",tablist$mets_res$adj_var))
+cat("ACE model: decomposes the total variation in “liability” of disease into additive genetic (A), common or shared environmental (C), and unique or unshared environmental (E) effects. -2LL, -2log likelihood. AIC, Akaike's information criterion. \n\n")
+
+```
+
+#### ADE model:
+
+The estimated covariate effects and heritability for outcome.
+```{r chunk5_3_1}
+
+kable(tablist$mets_res$ade_cov, row.names=T)
+
+```
+
+Statistical analyses of for outcome heritability.
+```{r chunk5_3_2}
+
+kable(tablist$mets_res$ade, row.names=T)
+
+```
+
+```{r chunk5_4}
+
+cat(sprintf("*Model ajdust with %s. ",tablist$mets_res$adj_var))
+cat("ADE model: decomposes the total variation in “liability” of disease into additive genetic (A), non-additive genetic (D), and unique or unshared environmental (E) effects. -2LL, -2log likelihood. AIC, Akaike's information criterion. \n\n")
+
+```
+
+
+
+
+

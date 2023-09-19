@@ -30,7 +30,24 @@ GEE_res <- GEE(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 # logistic regression
 glm_res <- logisticMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 
-# nlm
-nlmMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var='RDS',use_model='bp')
+# mets
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',use_model='bp',type = 'ace')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',use_model='or',type = 'ace')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',use_model='gamma',type = 'ace')
+
+data <- data %>% mutate_at(c("Sex","RDS","INST"),function(x)as.factor(x))
+cov_var <- c("Sex","GA","BW","RDS","INST")
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=cov_var,use_model='bp',type = 'ace')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=cov_var,use_model='bp',type = 'ade')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=cov_var,use_model='bp',type = 'ae')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=cov_var,use_model='bp',type = 'ce')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=cov_var,use_model='bp',type = 'de')
+
+
+# report
+cov_var <- NULL
+twinstat_report(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=cov_var,filename='C:\\Users\\admin\\Downloads\\report.html')
+twinstat_report(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var=NULL,filename='C:\\Users\\admin\\Downloads\\report.html')
+
 
 

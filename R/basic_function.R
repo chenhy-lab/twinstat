@@ -51,6 +51,7 @@ load_example_data <- function() {
 #' @param Monochorionic_value character or numeric, the value indicating monochorionic twins. Default is 1.
 #' @param Dichorionic_value character or numeric, the value indicating dichorionic twins. Default is 0.
 #' @param print.out a boolean, Whether or not to print results.
+#' @param ... Arguments to be passed to [stats::chisq.test()]
 #' 
 #' @return
 #' Return a list. Chisq_value and P_value are the results of the chi-square test and 

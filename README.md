@@ -59,7 +59,7 @@ GEE_res <- GEE(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 glm_res <- logisticMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo')
 
 ## mets package
-nlmMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var='RDS',use_model='bp')
+metsMD(data=data,famid='FAMID',outcome='BPD',zyg='zygo',cov_var='RDS',use_model='bp')
 ```
 
 
